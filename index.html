@@ -40,7 +40,18 @@ Sure, here's the content for the file: /my-website/my-website/pages/index.html
             text-align: center;
             padding-top: 2px;
         }
-        
+        main h1 {
+            color:rgb(255, 245, 238);
+            font-family: arial;
+        }
+
+        footer {
+            height: 40px;
+            background-color: rgb(255, 245, 238);
+            text-align: center;
+            padding-top: 10px;
+            color: rgb(255, 245, 238)
+        }
     </style>
 </head>
 <body>
@@ -48,9 +59,17 @@ Sure, here's the content for the file: /my-website/my-website/pages/index.html
         <h1 style="font-size: 60px; color: #e0e1c4;">Welcome to My Mini Local Pet Adoption Site</h1>
     </header>
     <main>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
         <section>
             <h2>Adoption</h2>
-            <p>Pet adoption is the process of transferring responsibility for a pet. Common sources for adoptable pets are animal shelters, rescue groups, or other pet owners. Some organizations give adopters ownership of the pet, while others use a guardianship model wherein the organization retains some control over the animal's future use or care.</p>
+            <p>Pet adoption is the process of transferring responsibility for a pet. Common sources for adoptable pets are animal shelters, rescue groups, or other pet owners. Some organizations give adopters ownership of the pet, while others use a guardianship model wherein the organization retains some control over the animal's future use or care. <a href="contact.html">Contact us</a> to learn more.</p>
         </section>
         <section>
             <h2>Before adoption</h2>
@@ -76,7 +95,7 @@ Sure, here's the content for the file: /my-website/my-website/pages/index.html
         </section>
     </main>
     <footer>
-<p>2025 My Mini Site</p>
+        <p>2025 My Mini Site</p>
     </footer>
 </body>
 </html>
