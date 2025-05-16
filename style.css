@@ -6,15 +6,20 @@ header {
   padding-left: 100px;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 30px; color: #e0e1c4
+  font-size: 30px;
+  color: #e0e1c4;
 }
+
 li {
   list-style-type: none;
   display: inline;
+  margin-right: 15px;
 }
+
 li a {
   text-decoration: none;
 }
+
 li a:link {
   color: #000;
 }
@@ -27,58 +32,74 @@ li a:hover {
 li a:active {
   color: #753a30;
 }
+
 nav {
-  background-color: rbg(255, 245, 238);
+  background-color: rgb(255, 245, 238);
   height: 50px;
   text-align: center;
-  padding-top: 2px;
+  padding-top: 10px;
 }
+
 main {
   margin: 50px;
 }
 
 main h1 {
-  color:rgb(255, 245, 238);
-  font-family: arial;
+  color: rgb(255, 245, 238);
+  font-family: Arial, Helvetica, sans-serif;
 }
+
 table {
   margin-top: 35px;
+  border-collapse: collapse;
 }
+
 table, th, td {
   border: 1px solid #000;
 }
+
 th, td {
   width: 150px;
   height: 35px;
+  padding: 5px;
 }
+
 caption {
   text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 label {
   display: block;
-  margin: 15px 0 0 0;
+  margin: 15px 0 5px;
 }
+
 input {
   width: 300px;
+  padding: 5px;
 }
+
 input[type="radio"] {
-  width: 25px;
+  width: auto;
 }
+
 textarea {
   width: 300px;
+  padding: 5px;
 }
-input[type="button"] {
+
+input[type="submit"], input[type="button"] {
   display: block;
   margin: 20px 0 10px 0px;
   width: 100px;
+  padding: 8px;
 }
+
 footer {
   height: 40px;
   background-color: rgb(255, 245, 238);
   text-align: center;
   padding-top: 10px;
-  color: rgb(255, 245, 238)
+  color: #333;
 }
-
-
