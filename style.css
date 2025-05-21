@@ -165,6 +165,11 @@ img {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
+main #album #photo img {
+  width: 400px;
+  
+}
+
 footer {
   height: 40px;
   background-color: rgb(255, 245, 238);
