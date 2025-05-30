@@ -23,44 +23,64 @@
             <p>My Fourth Paragraph</p>
             <ul id="album" class="gallery"></ul>
 
-        </main>
-        <footer>
-            <p>2025 My Mini Site</p>
-        </footer>
+    <!-- Overlay box for enlarged photo and description -->
+    <div id="overlay" class="overlay">
+        <div class="overlay-content">
+            <h2 id="overlay-title"></h2>
+            <p id="overlay-description"></p>
+            <p><a href="#" id="close-btn">Click This To Close</a></p>
+        </div>
     </div>
-    <!-- End of Container -->
-    <script>
-        var photos = [];// Declare an empty array to store the image element
-        var fileNames = [];// Declare an empty array to store image file names
-        var captions = [
-            "BEAUTIFUL WINTER", "SNOW LAND", "SNOWY PATH",
-            "FROSTY TREES", "WINTER TWILIGHT", "MISTY MORNING"
-        ];
-        var descriptions = [
-            "A beautiful winter scenery in the morning",
-            "A peaceful snowy landscape at dusk",
-            "A snowy path lined with trees",
-            "Frost-covered trees at sunrise",
-            "Twilight over a snowy field",
-            "Misty morning in winter woods"
-        ];
-        var imageList = [];// Declare an empty array to store the html list that contains an image
-        var image;// Declare am empty variable to store assembled image list codes
-        var openList = "<li id='photo'>";// Declare a variable to contain open list tag
-        var closeList = "</li>";// Declare a variable to contain close list tag
+</main>
 
-        // Create a loop to create 6 images starting with an index of 0
-        for (var i = 0; i < 6; i++) {
+<script>
+    var photos = []; // Declare an empty array to store the image element
+    var fileNames = []; // Declare an empty array to store image file names
+    var captions = [
+        "BEAUTIFUL WINTER", "SNOW LAND", "WINTERY ROAD",
+        "WINTERY ROAD", "WINTER IN THE COUNTRY", "WINTERY ROAD"
+    ];
+    var descriptions = [
+        "Most of plants and animals are having their hibernation period, so winter is not full of bright colors, but who says that white, snowy and a bit magical winter is not cool?",
+        "Most of plants and animals are having their hibernation period, so winter is not full of bright colors, but who says that white, snowy and a bit magical winter is not cool?",
+        "The most beautiful phenomenon of the winter is snow! You know that the snowflakes are never repeat themselves, they have amazing shapes, that different with each new snowflake.",
+        "The most beautiful phenomenon of the winter is snow! You know that the snowflakes are never repeat themselves, they have amazing shapes, that different with each new snowflake.",
+        "Most of plants and animals are having their hibernation period, so winter is not full of bright colors, but who says that white, snowy and a bit magical winter is not cool?",
+        "The most beautiful phenomenon of the winter is snow! You know that the snowflakes are never repeat themselves, they have amazing shapes, that different with each new snowflake."
+    ];
+    var imageList = []; // Declare an empty array to store the html list that contains an image
+    var openList = "<li id='photo'>"; // Declare a variable to contain open list tag
+    var closeList = "</li>"; // Declare a variable to contain close list tag
+
+    // Create a loop to create 6 images starting with an index of 0
+    for (var i = 0; i < 6; i++) {
         fileNames.push("winterland" + (i + 1)); // Create image file name and store in array
-        photos.push("<div class='img-wrapper'><img src='images/" + fileNames[i] + ".jpg' alt='" + captions[i] + "'><div class='description'>" + descriptions[i] + "</div></div>");
+        // Add data attributes for title and description
+        photos.push("<div class='img-wrapper' data-title='" + captions[i] + "' data-description='" + descriptions[i] + "'><img src='images/" + fileNames[i] + ".jpg' alt='" + captions[i] + "'></div>");
         var image =
             photos[i] +
             "<div class='caption'>" + captions[i] + "</div>"; // Add visible caption
         imageList.push(openList + image + closeList); // Store full HTML block in imageList
-        }
+    }
 
-        // Display all 6 image codes stored in array
-        document.getElementById("album").innerHTML = imageList.join('');
-    </script>
-</body>
-</html>
+    // Display all 6 image codes stored in array
+    document.getElementById("album").innerHTML = imageList.join('');
+
+    // Add click event to each img-wrapper
+    var wrappers = document.querySelectorAll('.img-wrapper');
+    wrappers.forEach(function(wrapper) {
+        wrapper.addEventListener('click', function() {
+            var title = wrapper.getAttribute('data-title');
+            var desc = wrapper.getAttribute('data-description');
+            document.getElementById('overlay-title').innerText = title;
+            document.getElementById('overlay-description').innerText = desc;
+            document.getElementById('overlay').style.display = 'block';
+        });
+    });
+
+    // Close button click event
+    document.getElementById('close-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('overlay').style.display = 'none';
+    });
+</script>
