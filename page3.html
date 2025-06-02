@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Contact Us</title>
     <link rel="stylesheet" href="./style.css">
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
 </head>
 <body>
     <header>
@@ -18,8 +23,10 @@
                 <li><a href="page3.html">Contact</a></li>
             </ul>
         </nav>
+        
         <h1>My Third Heading</h1>
         <p>My Third Paragraph</p>
+
         <form action="/signup" method="post">
           <fieldset>
             <legend>User Personal Information</legend>
@@ -47,8 +54,33 @@
             <br>
 
             <label>Tell us the reason for your visit today:</label>
-            <textarea rows="6" columns="30"></textarea><br>
+            <textarea rows="6" columns="30"></textarea>
+            <br>
 
+            <label>Preferred Contact Time:</label>
+            <select id="contact-time-select">
+              <option value="">-- Please select --</option>
+              <option value="morning">Morning</option>
+              <option value="afternoon">Afternoon</option>
+              <option value="evening">Evening</option>
+            </select>
+
+            <div id="morning-box" class="hidden">
+              <label>Morning Time:</label>
+              <input type="text" name="morning-time" placeholder="e.g. 8:00 AM - 10:00 AM">
+            </div>
+
+            <div id="afternoon-box" class="hidden">
+              <label>Afternoon Time:</label>
+              <input type="text" name="afternoon-time" placeholder="e.g. 1:00 PM - 3:00 PM">
+            </div>
+
+            <div id="evening-box" class="hidden">
+              <label>Evening Time:</label>
+              <input type="text" name="evening-time" placeholder="e.g. 6:00 PM - 8:00 PM">
+            </div>
+
+            <br>
             <input type="submit" value="Sign-Up">
           </fieldset>
         </form>
@@ -57,5 +89,7 @@
     <footer>
         <p>2025 My Mini Site</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
