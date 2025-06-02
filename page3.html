@@ -19,7 +19,7 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="page2.html">About</a></li>
-                <li><a href='page4.html'>Gallery</a></li>
+                <li><a href="page4.html">Gallery</a></li>
                 <li><a href="page3.html">Contact</a></li>
             </ul>
         </nav>
@@ -47,40 +47,27 @@
             <br>
 
             <label>How should we contact you?</label>
-            <select>
-              <option>Email</option>
-              <option>Phone</option>
+            <select id="contact-method">
+              <option value="">-- Please select --</option>
+              <option value="email">Email</option>
+              <option value="phone">Phone</option>
             </select>
             <br>
+
+            <div id="email-box" class="hidden">
+              <label>Enter your email to contact you:</label>
+              <input type="email" name="contact-email">
+            </div>
+
+            <div id="phone-box" class="hidden">
+              <label>Enter your phone to contact you:</label>
+              <input type="text" name="contact-phone">
+            </div>
 
             <label>Tell us the reason for your visit today:</label>
             <textarea rows="6" columns="30"></textarea>
             <br>
 
-            <label>Preferred Contact Time:</label>
-            <select id="contact-time-select">
-              <option value="">-- Please select --</option>
-              <option value="morning">Morning</option>
-              <option value="afternoon">Afternoon</option>
-              <option value="evening">Evening</option>
-            </select>
-
-            <div id="morning-box" class="hidden">
-              <label>Morning Time:</label>
-              <input type="text" name="morning-time" placeholder="e.g. 8:00 AM - 10:00 AM">
-            </div>
-
-            <div id="afternoon-box" class="hidden">
-              <label>Afternoon Time:</label>
-              <input type="text" name="afternoon-time" placeholder="e.g. 1:00 PM - 3:00 PM">
-            </div>
-
-            <div id="evening-box" class="hidden">
-              <label>Evening Time:</label>
-              <input type="text" name="evening-time" placeholder="e.g. 6:00 PM - 8:00 PM">
-            </div>
-
-            <br>
             <input type="submit" value="Sign-Up">
           </fieldset>
         </form>
