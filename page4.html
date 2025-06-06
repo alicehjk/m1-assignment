@@ -4,26 +4,6 @@
     <meta charset="UTF-8">
     <title>gallery</title>
     <link rel="stylesheet" href="./style.css">
-    <style>
-    /* Add fade animation */
-    .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        z-index: 9999;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .overlay.show {
-        display: block;
-        opacity: 1;
-    }
-    </style>
 </head>
 <body>
     <div id="container">
@@ -46,6 +26,8 @@
             <!-- Overlay box for enlarged photo and description -->
             <div id="overlay" class="overlay">
                 <div class="overlay-content">
+                    <!-- Image added -->
+                    <img id="overlay-image" src="" alt="" style="max-width:100%; height:auto; margin-bottom:1rem; border-radius:8px;">
                     <h2 id="overlay-title"></h2>
                     <p id="overlay-description"></p>
                     <p><a href="#" id="close-btn">Click This To Close</a></p>
@@ -90,27 +72,45 @@
 
     document.getElementById("album").innerHTML = imageList.join('');
 
-    document.querySelectorAll('.img-wrapper img').forEach(function(img) {
-        img.addEventListener('click', function() {
+    // click on image to open overlay
+    document.querySelectorAll('.img-wrapper img').forEach(function (img) {
+        img.addEventListener('click', function () {
             var wrapper = this.parentElement;
             var title = wrapper.getAttribute('data-title');
             var desc = wrapper.getAttribute('data-description');
+            var imgSrc = this.getAttribute('src');
+            var imgAlt = this.getAttribute('alt');
+
             document.getElementById('overlay-title').innerText = title;
             document.getElementById('overlay-description').innerText = desc;
-            
+            document.getElementById('overlay-image').setAttribute('src', imgSrc);
+            document.getElementById('overlay-image').setAttribute('alt', imgAlt);
+
             var overlay = document.getElementById('overlay');
             overlay.classList.add('show');
         });
     });
 
+    // close button
     var overlay = document.getElementById('overlay');
-    document.getElementById('close-btn').addEventListener('click', function(e) {
+    document.getElementById('close-btn').addEventListener('click', function (e) {
         e.preventDefault();
         overlay.classList.remove('show');
-        setTimeout(function() {
+        setTimeout(function () {
             overlay.style.display = 'none';
         }, 300);
     });
+
+    // show overlay again after fade out
+    var observer = new MutationObserver(function() {
+        if (!overlay.classList.contains('show')) {
+            overlay.style.display = 'none';
+        } else {
+            overlay.style.display = 'block';
+        }
+    });
+    observer.observe(overlay, { attributes: true, attributeFilter: ['class'] });
+
 </script>
 
 </body>
