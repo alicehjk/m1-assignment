@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
     <title>gallery</title>
     <link rel="stylesheet" href="./style.css">
+    <style>
+    /* Add fade animation */
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .overlay.show {
+        display: block;
+        opacity: 1;
+    }
+    </style>
 </head>
 <body>
     <div id="container">
@@ -23,19 +43,20 @@
             <p>My Fourth Paragraph</p>
             <ul id="album" class="gallery"></ul>
 
-    <!-- Overlay box for enlarged photo and description -->
-    <div id="overlay" class="overlay">
-        <div class="overlay-content">
-            <h2 id="overlay-title"></h2>
-            <p id="overlay-description"></p>
-            <p><a href="#" id="close-btn">Click This To Close</a></p>
-        </div>
+            <!-- Overlay box for enlarged photo and description -->
+            <div id="overlay" class="overlay">
+                <div class="overlay-content">
+                    <h2 id="overlay-title"></h2>
+                    <p id="overlay-description"></p>
+                    <p><a href="#" id="close-btn">Click This To Close</a></p>
+                </div>
+            </div>
+        </main>
     </div>
-</main>
 
 <script>
-    var photos = []; // Declare an empty array to store the image element
-    var fileNames = []; // Declare an empty array to store image file names
+    var photos = [];
+    var fileNames = [];
     var captions = [
         "BEAUTIFUL WINTER", "SNOW LAND", "WINTERY ROAD",
         "WINTERY ROAD", "WINTER IN THE COUNTRY", "WINTERY ROAD"
@@ -56,38 +77,41 @@
         "After an overnight snowstorm", 
         "Snowy drive on the road"
     ];
-    var imageList = []; // Declare an empty array to store the html list that contains an image
-    var openList = "<li id='photo'>"; // Declare a variable to contain open list tag
-    var closeList = "</li>"; // Declare a variable to contain close list tag
+    var imageList = [];
+    var openList = "<li id='photo'>";
+    var closeList = "</li>";
 
-    // Create a loop to create 6 images starting with an index of 0
     for (var i = 0; i < 6; i++) {
         fileNames.push("winterland" + (i + 1));
         photos.push("<div class='img-wrapper' data-title='" + captions[i] + "' data-description='" + descriptions[i] + "' data-hover='" + hoverTexts[i] + "'><img src='images/" + fileNames[i] + ".jpg' alt='" + captions[i] + "'></div>");
-        var image =
-            photos[i] +
-            "<div class='caption'>" + captions[i] + "</div>";
+        var image = photos[i] + "<div class='caption'>" + captions[i] + "</div>";
         imageList.push(openList + image + closeList);
     }
 
-    // Display all 6 image codes stored in array
     document.getElementById("album").innerHTML = imageList.join('');
 
-    // Add click event to each img-wrapper
-    var wrappers = document.querySelectorAll('.img-wrapper');
-    wrappers.forEach(function(wrapper) {
-        wrapper.addEventListener('click', function() {
+    document.querySelectorAll('.img-wrapper img').forEach(function(img) {
+        img.addEventListener('click', function() {
+            var wrapper = this.parentElement;
             var title = wrapper.getAttribute('data-title');
             var desc = wrapper.getAttribute('data-description');
             document.getElementById('overlay-title').innerText = title;
             document.getElementById('overlay-description').innerText = desc;
-            document.getElementById('overlay').style.display = 'block';
+            
+            var overlay = document.getElementById('overlay');
+            overlay.classList.add('show');
         });
     });
 
-    // Close button click event
+    var overlay = document.getElementById('overlay');
     document.getElementById('close-btn').addEventListener('click', function(e) {
         e.preventDefault();
-        document.getElementById('overlay').style.display = 'none';
+        overlay.classList.remove('show');
+        setTimeout(function() {
+            overlay.style.display = 'none';
+        }, 300);
     });
 </script>
+
+</body>
+</html>
